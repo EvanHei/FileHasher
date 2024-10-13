@@ -13,11 +13,11 @@ namespace WinFormsUI
         {
             byte[] bytes = File.ReadAllBytes(path);
 
-            MD5ValueLabel.Text = TruncateText(BitConverter.ToString(Md5Hasher.Hash(bytes)).Replace("-", ""));
-            SHA1ValueLabel.Text = TruncateText(BitConverter.ToString(Sha1Hasher.Hash(bytes)).Replace("-", ""));
-            SHA256ValueLabel.Text = TruncateText(BitConverter.ToString(Sha256Hasher.Hash(bytes)).Replace("-", ""));
-            SHA384ValueLabel.Text = TruncateText(BitConverter.ToString(Sha384Hasher.Hash(bytes)).Replace("-", ""));
-            SHA512ValueLabel.Text = TruncateText(BitConverter.ToString(Sha512Hasher.Hash(bytes)).Replace("-", ""));
+            MD5ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.MD5)).Replace("-", ""));
+            SHA1ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA1)).Replace("-", ""));
+            SHA256ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA256)).Replace("-", ""));
+            SHA384ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA384)).Replace("-", ""));
+            SHA512ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA512)).Replace("-", ""));
             FileNameValueLabel.Text = TruncateText(Path.GetFileName(path));
 
             MD5ValueLabel.Visible = true;
