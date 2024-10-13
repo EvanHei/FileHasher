@@ -22,6 +22,12 @@ namespace WinFormsUI
 
         private void UpdateControls(string path)
         {
+            if (!File.Exists(path))
+            {
+                ResetControls();
+                return;
+            }
+
             fileBytes = File.ReadAllBytes(path);
 
             HashesPanel_MD5ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.MD5)).Replace("-", ""), 15);
@@ -38,9 +44,24 @@ namespace WinFormsUI
             HashesPanel_SHA384ValueLabel.Visible = true;
             HashesPanel_SHA512ValueLabel.Visible = true;
             HashesPanel_FileNameValueLabel.Visible = true;
+            HashesPanel_TrashLabel.Visible = true;
             ValidatePanel_FileNameValueLabel.Visible = true;
+            ValidatePanel_TrashLabel.Visible = true;
 
             ValidatePanel_ExpectedHashTextBox_TextChanged(null, null);
+        }
+
+        private void ResetControls()
+        {
+            HashesPanel_MD5ValueLabel.Visible = false;
+            HashesPanel_SHA1ValueLabel.Visible = false;
+            HashesPanel_SHA256ValueLabel.Visible = false;
+            HashesPanel_SHA384ValueLabel.Visible = false;
+            HashesPanel_SHA512ValueLabel.Visible = false;
+            HashesPanel_FileNameValueLabel.Visible = false;
+            HashesPanel_TrashLabel.Visible = false;
+            ValidatePanel_FileNameValueLabel.Visible = false;
+            ValidatePanel_TrashLabel.Visible = false;
         }
 
         private string TruncateText(string text, int length)
@@ -159,6 +180,16 @@ namespace WinFormsUI
         private void ValidatePanel_AlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ValidatePanel_ExpectedHashTextBox_TextChanged(null, null);
+        }
+
+        private void HashesPanel_TrashLabel_Click(object sender, EventArgs e)
+        {
+            UpdateControls("");
+        }
+
+        private void ValidatePanel_TrashLabel_Click(object sender, EventArgs e)
+        {
+            UpdateControls("");
         }
     }
 }
