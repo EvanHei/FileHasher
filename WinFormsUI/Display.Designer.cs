@@ -575,7 +575,7 @@
             ComparePanel_ResultLabel.AutoSize = true;
             ComparePanel_ResultLabel.Font = new Font("Segoe UI Emoji", 10F);
             ComparePanel_ResultLabel.ForeColor = Color.Green;
-            ComparePanel_ResultLabel.Location = new Point(60, 197);
+            ComparePanel_ResultLabel.Location = new Point(69, 197);
             ComparePanel_ResultLabel.Name = "ComparePanel_ResultLabel";
             ComparePanel_ResultLabel.Size = new Size(63, 19);
             ComparePanel_ResultLabel.TabIndex = 22;

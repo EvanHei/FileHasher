@@ -9,9 +9,9 @@ namespace WinFormsUI
 {
     public partial class DisplayForm : Form
     {
-        byte[] fileBytes = new byte[0];
-        byte[] ComparePanel_FileBytes1 = new byte[0];
-        byte[] ComparePanel_FileBytes2 = new byte[0];
+        byte[] fileBytes;
+        byte[] ComparePanel_FileBytes1;
+        byte[] ComparePanel_FileBytes2;
 
         public DisplayForm()
         {
@@ -179,7 +179,7 @@ namespace WinFormsUI
                 return;
             }
 
-            if (fileBytes.Length > 0)
+            if (fileBytes != null)
             {
                 Algorithm algorithm = (Algorithm)ValidatePanel_AlgorithmComboBox.SelectedItem;
                 string computedHash = BitConverter.ToString(Hasher.Hash(fileBytes, algorithm)).Replace("-", "");
@@ -245,7 +245,7 @@ namespace WinFormsUI
             ComparePanel_TrashLabel1.Visible = true;
             ComparePanel_FileBytes1 = File.ReadAllBytes(path);
 
-            if (ComparePanel_FileBytes2.Length > 0)
+            if (ComparePanel_FileBytes2 != null)
             {
                 UpdateComparePanelControls();
             }
@@ -270,7 +270,7 @@ namespace WinFormsUI
             ComparePanel_TrashLabel2.Visible = true;
             ComparePanel_FileBytes2 = File.ReadAllBytes(path);
 
-            if (ComparePanel_FileBytes1.Length > 0)
+            if (ComparePanel_FileBytes1 != null)
             {
                 UpdateComparePanelControls();
             }
@@ -278,7 +278,7 @@ namespace WinFormsUI
 
         private void UpdateComparePanelControls()
         {
-            if (ComparePanel_FileBytes1.Length == 0 || ComparePanel_FileBytes2.Length == 0)
+            if (ComparePanel_FileBytes1 == null || ComparePanel_FileBytes2 == null)
                 return;
 
             string hash_1 = BitConverter.ToString(Hasher.Hash(ComparePanel_FileBytes1, Algorithm.SHA512));
@@ -301,7 +301,7 @@ namespace WinFormsUI
         private void ComparePanel_TrashLabel1_Click(object sender, EventArgs e)
         {
             ComparePanel_FileNameValueLabel1.Text = "Choose file...";
-            ComparePanel_FileBytes1 = new byte[0];
+            ComparePanel_FileBytes1 = null;
             ComparePanel_ResultLabel.Visible = false;
             ComparePanel_TrashLabel1.Visible = false;
         }
@@ -309,7 +309,7 @@ namespace WinFormsUI
         private void ComparePanel_TrashLabel2_Click(object sender, EventArgs e)
         {
             ComparePanel_FileNameValueLabel2.Text = "Choose file...";
-            ComparePanel_FileBytes2 = new byte[0];
+            ComparePanel_FileBytes2 = null;
             ComparePanel_ResultLabel.Visible = false;
             ComparePanel_TrashLabel2.Visible = false;
         }
