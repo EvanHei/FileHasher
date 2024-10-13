@@ -1,36 +1,51 @@
 using FileHasherLibrary;
+using System.Collections;
+using System.IO;
 
 namespace WinFormsUI
 {
     public partial class DisplayForm : Form
     {
+        byte[] fileBytes = new byte[0];
+
         public DisplayForm()
         {
             InitializeComponent();
+            PopulateForm();
+            ShowHashesPanel();
+        }
+
+        private void PopulateForm()
+        {
+            ValidatePanel_AlgorithmComboBox.DataSource = Enum.GetValues(typeof(Algorithm));
         }
 
         private void UpdateControls(string path)
         {
-            byte[] bytes = File.ReadAllBytes(path);
+            fileBytes = File.ReadAllBytes(path);
 
-            MD5ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.MD5)).Replace("-", ""));
-            SHA1ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA1)).Replace("-", ""));
-            SHA256ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA256)).Replace("-", ""));
-            SHA384ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA384)).Replace("-", ""));
-            SHA512ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(bytes, Algorithm.SHA512)).Replace("-", ""));
-            FileNameValueLabel.Text = TruncateText(Path.GetFileName(path));
+            HashesPanel_MD5ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.MD5)).Replace("-", ""), 15);
+            HashesPanel_SHA1ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA1)).Replace("-", ""), 15);
+            HashesPanel_SHA256ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA256)).Replace("-", ""), 15);
+            HashesPanel_SHA384ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA384)).Replace("-", ""), 15);
+            HashesPanel_SHA512ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA512)).Replace("-", ""), 15);
+            HashesPanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 30);
+            ValidatePanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 30);
 
-            MD5ValueLabel.Visible = true;
-            SHA1ValueLabel.Visible = true;
-            SHA256ValueLabel.Visible = true;
-            SHA384ValueLabel.Visible = true;
-            SHA512ValueLabel.Visible = true;
-            FileNameValueLabel.Visible = true;
+            HashesPanel_MD5ValueLabel.Visible = true;
+            HashesPanel_SHA1ValueLabel.Visible = true;
+            HashesPanel_SHA256ValueLabel.Visible = true;
+            HashesPanel_SHA384ValueLabel.Visible = true;
+            HashesPanel_SHA512ValueLabel.Visible = true;
+            HashesPanel_FileNameValueLabel.Visible = true;
+            ValidatePanel_FileNameValueLabel.Visible = true;
+
+            ValidatePanel_ExpectedHashTextBox_TextChanged(null, null);
         }
 
-        private string TruncateText(string text)
+        private string TruncateText(string text, int length)
         {
-            return text.Length > 15 ? text.Substring(0, 15) + "..." : text;
+            return text.Length > length ? text.Substring(0, length) + "..." : text;
         }
 
         private void DisplayForm_DragDrop(object sender, DragEventArgs e)
@@ -65,29 +80,85 @@ namespace WinFormsUI
             label.ForeColor = SystemColors.ButtonFace;
         }
 
-        private void MD5ClipboardLabel_Click(object sender, EventArgs e)
+        private void HashesPanel_MD5ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(MD5ValueLabel.Text);
+            Clipboard.SetText(HashesPanel_MD5ValueLabel.Text);
         }
 
-        private void SHA1ClipboardLabel_Click(object sender, EventArgs e)
+        private void HashesPanel_SHA1ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(SHA1ValueLabel.Text);
+            Clipboard.SetText(HashesPanel_SHA1ValueLabel.Text);
         }
 
-        private void SHA256ClipboardLabel_Click(object sender, EventArgs e)
+        private void HashesPanel_SHA256ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(SHA256ValueLabel.Text);
+            Clipboard.SetText(HashesPanel_SHA256ValueLabel.Text);
         }
 
-        private void SHA384ClipboardLabel_Click(object sender, EventArgs e)
+        private void HashesPanel_SHA384ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(SHA384ValueLabel.Text);
+            Clipboard.SetText(HashesPanel_SHA384ValueLabel.Text);
         }
 
-        private void SHA512ClipboardLabel_Click(object sender, EventArgs e)
+        private void HashesPanel_SHA512ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(SHA512ValueLabel.Text);
+            Clipboard.SetText(HashesPanel_SHA512ValueLabel.Text);
+        }
+
+        private void HashesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowHashesPanel();
+        }
+
+        private void ShowHashesPanel()
+        {
+            HashesPanel.Visible = true;
+            ValidatePanel.Visible = false;
+        }
+
+        private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowValidatePanel();
+        }
+
+        private void ShowValidatePanel()
+        {
+            HashesPanel.Visible = false;
+            ValidatePanel.Visible = true;
+        }
+
+        private void ValidatePanel_ExpectedHashTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ValidatePanel_ExpectedHashTextBox.Text))
+            {
+                ValidatePanel_ValidateResultLabel.Visible = false;
+                return;
+            }
+
+            if (fileBytes.Length > 0)
+            {
+                Algorithm algorithm = (Algorithm)ValidatePanel_AlgorithmComboBox.SelectedItem;
+                string computedHash = BitConverter.ToString(Hasher.Hash(fileBytes, algorithm)).Replace("-", "");
+                string expectedHash = ValidatePanel_ExpectedHashTextBox.Text.ToUpper();
+
+                if (computedHash == expectedHash)
+                {
+                    ValidatePanel_ValidateResultLabel.Visible = true;
+                    ValidatePanel_ValidateResultLabel.ForeColor = Color.DarkGreen;
+                    ValidatePanel_ValidateResultLabel.Text = "Valid Hash";
+                }
+                else
+                {
+                    ValidatePanel_ValidateResultLabel.Visible = true;
+                    ValidatePanel_ValidateResultLabel.ForeColor = Color.Red;
+                    ValidatePanel_ValidateResultLabel.Text = "Invalid Hash";
+                }
+            }
+        }
+
+        private void ValidatePanel_AlgorithmComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ValidatePanel_ExpectedHashTextBox_TextChanged(null, null);
         }
     }
 }
