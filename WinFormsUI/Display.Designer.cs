@@ -53,6 +53,7 @@
             ValidateToolStripMenuItem = new ToolStripMenuItem();
             CompareToolStripMenuItem = new ToolStripMenuItem();
             HashesPanel = new Panel();
+            HashesPanel_BrowseLabel = new Label();
             HashesPanel_TrashLabel = new Label();
             ValidatePanel = new Panel();
             ValidatePanel_TrashLabel = new Label();
@@ -64,6 +65,7 @@
             ValidatePanel_ExpectedHashTextBox = new TextBox();
             ValidatePanel_AlgorithmComboBox = new ComboBox();
             ValidatePanel_ExpectedLabel = new Label();
+            ValidatePanel_BrowseLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)HashesPanel_DragAndDropPictureBox).BeginInit();
             HashesPanel_AlgorithmsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)HashesPanel_DropFilePictureBox).BeginInit();
@@ -353,6 +355,7 @@
             // 
             // HashesPanel
             // 
+            HashesPanel.Controls.Add(HashesPanel_BrowseLabel);
             HashesPanel.Controls.Add(HashesPanel_TrashLabel);
             HashesPanel.Controls.Add(HashesPanel_DropFilePictureBox);
             HashesPanel.Controls.Add(HashesPanel_FileNameValueLabel);
@@ -362,6 +365,19 @@
             HashesPanel.Name = "HashesPanel";
             HashesPanel.Size = new Size(276, 376);
             HashesPanel.TabIndex = 22;
+            // 
+            // HashesPanel_BrowseLabel
+            // 
+            HashesPanel_BrowseLabel.AutoSize = true;
+            HashesPanel_BrowseLabel.Cursor = Cursors.Hand;
+            HashesPanel_BrowseLabel.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline);
+            HashesPanel_BrowseLabel.ForeColor = SystemColors.ButtonFace;
+            HashesPanel_BrowseLabel.Location = new Point(107, 160);
+            HashesPanel_BrowseLabel.Name = "HashesPanel_BrowseLabel";
+            HashesPanel_BrowseLabel.Size = new Size(62, 19);
+            HashesPanel_BrowseLabel.TabIndex = 18;
+            HashesPanel_BrowseLabel.Text = "Browse...";
+            HashesPanel_BrowseLabel.Click += Browse_Click;
             // 
             // HashesPanel_TrashLabel
             // 
@@ -381,11 +397,12 @@
             // 
             // ValidatePanel
             // 
+            ValidatePanel.Controls.Add(ValidatePanel_BrowseLabel);
             ValidatePanel.Controls.Add(ValidatePanel_TrashLabel);
             ValidatePanel.Controls.Add(ValidatePanel_DropFilePictureBox);
             ValidatePanel.Controls.Add(ValidatePanel_FileNameValueLabel);
-            ValidatePanel.Controls.Add(ValidatePanel_DragAndDropPictureBox);
             ValidatePanel.Controls.Add(ValidatePanel_InputHashPanel);
+            ValidatePanel.Controls.Add(ValidatePanel_DragAndDropPictureBox);
             ValidatePanel.Location = new Point(12, 30);
             ValidatePanel.Name = "ValidatePanel";
             ValidatePanel.Size = new Size(276, 376);
@@ -504,6 +521,19 @@
             ValidatePanel_ExpectedLabel.Tag = "";
             ValidatePanel_ExpectedLabel.Text = "Expected:";
             // 
+            // ValidatePanel_BrowseLabel
+            // 
+            ValidatePanel_BrowseLabel.AutoSize = true;
+            ValidatePanel_BrowseLabel.Cursor = Cursors.Hand;
+            ValidatePanel_BrowseLabel.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline);
+            ValidatePanel_BrowseLabel.ForeColor = SystemColors.ButtonFace;
+            ValidatePanel_BrowseLabel.Location = new Point(107, 160);
+            ValidatePanel_BrowseLabel.Name = "ValidatePanel_BrowseLabel";
+            ValidatePanel_BrowseLabel.Size = new Size(62, 19);
+            ValidatePanel_BrowseLabel.TabIndex = 27;
+            ValidatePanel_BrowseLabel.Text = "Browse...";
+            ValidatePanel_BrowseLabel.Click += Browse_Click;
+            // 
             // DisplayForm
             // 
             AllowDrop = true;
@@ -512,8 +542,8 @@
             BackColor = Color.FromArgb(32, 32, 32);
             ClientSize = new Size(299, 413);
             Controls.Add(MenuStrip);
-            Controls.Add(HashesPanel);
             Controls.Add(ValidatePanel);
+            Controls.Add(HashesPanel);
             Font = new Font("Segoe UI Emoji", 12F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = MenuStrip;
@@ -578,5 +608,7 @@
         private Label ValidatePanel_FileNameValueLabel;
         private Label ValidatePanel_TrashLabel;
         private Label HashesPanel_TrashLabel;
+        private Label HashesPanel_BrowseLabel;
+        private Label ValidatePanel_BrowseLabel;
     }
 }

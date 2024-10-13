@@ -191,5 +191,16 @@ namespace WinFormsUI
         {
             UpdateControls("");
         }
+
+        private void Browse_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Title = "Select File";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            UpdateControls(openFileDialog.FileName);
+        }
     }
 }
