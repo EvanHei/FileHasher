@@ -1,12 +1,15 @@
 using FileHasherLibrary;
 using System.Collections;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace WinFormsUI
 {
     public partial class DisplayForm : Form
     {
         byte[] fileBytes = new byte[0];
+        byte[] ComparePanel_FileBytes1 = new byte[0];
+        byte[] ComparePanel_FileBytes2 = new byte[0];
 
         public DisplayForm()
         {
@@ -131,21 +134,30 @@ namespace WinFormsUI
             ShowHashesPanel();
         }
 
+        private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowValidatePanel();
+        }
+
         private void ShowHashesPanel()
         {
             HashesPanel.Visible = true;
             ValidatePanel.Visible = false;
-        }
-
-        private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ShowValidatePanel();
+            ComparePanel.Visible = false;
         }
 
         private void ShowValidatePanel()
         {
             HashesPanel.Visible = false;
             ValidatePanel.Visible = true;
+            ComparePanel.Visible = false;
+        }
+
+        private void ShowComparePanel()
+        {
+            HashesPanel.Visible = false;
+            ValidatePanel.Visible = false;
+            ComparePanel.Visible = true;
         }
 
         private void ValidatePanel_ExpectedHashTextBox_TextChanged(object sender, EventArgs e)
@@ -201,6 +213,101 @@ namespace WinFormsUI
                 return;
 
             UpdateControls(openFileDialog.FileName);
+        }
+
+        private void ComparePanel_BrowseLabel1_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Title = "Select File 1";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            string path = openFileDialog.FileName;
+            if (!File.Exists(path))
+            {
+                ResetControls();
+                return;
+            }
+
+            ComparePanel_FileNameValueLabel1.Text = TruncateText(Path.GetFileName(path), 30);
+            ComparePanel_FileNameValueLabel1.Visible = true;
+            ComparePanel_TrashLabel1.Visible = true;
+            ComparePanel_FileBytes1 = File.ReadAllBytes(path);
+
+            if (ComparePanel_FileBytes2.Length > 0)
+            {
+                UpdateComparePanelControls();
+            }
+        }
+
+        private void ComparePanel_BrowseLabel2_Click(object sender, EventArgs e)
+        {
+            using OpenFileDialog openFileDialog = new();
+            openFileDialog.Title = "Select File 2";
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            if (openFileDialog.ShowDialog() != DialogResult.OK)
+                return;
+
+            string path = openFileDialog.FileName;
+            if (!File.Exists(path))
+            {
+                ResetControls();
+                return;
+            }
+
+            ComparePanel_FileNameValueLabel2.Text = TruncateText(Path.GetFileName(path), 30);
+            ComparePanel_FileNameValueLabel2.Visible = true;
+            ComparePanel_TrashLabel2.Visible = true;
+            ComparePanel_FileBytes2 = File.ReadAllBytes(path);
+
+            if (ComparePanel_FileBytes1.Length > 0)
+            {
+                UpdateComparePanelControls();
+            }
+        }
+
+        private void UpdateComparePanelControls()
+        {
+            if (ComparePanel_FileBytes1.Length == 0 || ComparePanel_FileBytes2.Length == 0)
+                return;
+
+            string hash_1 = BitConverter.ToString(Hasher.Hash(ComparePanel_FileBytes1, Algorithm.SHA512));
+            string hash_2 = BitConverter.ToString(Hasher.Hash(ComparePanel_FileBytes2, Algorithm.SHA512));
+
+            if (hash_1 == hash_2)
+            {
+                ComparePanel_ResultLabel.Visible = true;
+                ComparePanel_ResultLabel.ForeColor = Color.DarkGreen;
+                ComparePanel_ResultLabel.Text = "The files are identical";
+            }
+            else
+            {
+                ComparePanel_ResultLabel.Visible = true;
+                ComparePanel_ResultLabel.ForeColor = Color.Red;
+                ComparePanel_ResultLabel.Text = "The files are different";
+            }
+        }
+
+        private void ComparePanel_TrashLabel1_Click(object sender, EventArgs e)
+        {
+            ComparePanel_FileNameValueLabel1.Text = "";
+            ComparePanel_FileBytes1 = new byte[0];
+            ComparePanel_ResultLabel.Visible = false;
+            ComparePanel_TrashLabel1.Visible = false;
+        }
+
+        private void ComparePanel_TrashLabel2_Click(object sender, EventArgs e)
+        {
+            ComparePanel_FileNameValueLabel2.Text = "";
+            ComparePanel_FileBytes2 = new byte[0];
+            ComparePanel_ResultLabel.Visible = false;
+            ComparePanel_TrashLabel2.Visible = false;
+        }
+
+        private void CompareToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ShowComparePanel();
         }
     }
 }
