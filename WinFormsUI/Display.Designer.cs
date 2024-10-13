@@ -52,6 +52,7 @@
             HashesToolStripMenuItem = new ToolStripMenuItem();
             ValidateToolStripMenuItem = new ToolStripMenuItem();
             CompareToolStripMenuItem = new ToolStripMenuItem();
+            QuestionMarkToolStripMenuItem = new ToolStripMenuItem();
             HashesPanel = new Panel();
             HashesPanel_BrowseLabel = new Label();
             HashesPanel_TrashLabel = new Label();
@@ -305,11 +306,11 @@
             // HashesPanel_FileNameValueLabel
             // 
             HashesPanel_FileNameValueLabel.AutoSize = true;
-            HashesPanel_FileNameValueLabel.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold);
+            HashesPanel_FileNameValueLabel.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Italic);
             HashesPanel_FileNameValueLabel.ForeColor = SystemColors.ButtonFace;
             HashesPanel_FileNameValueLabel.Location = new Point(3, 6);
             HashesPanel_FileNameValueLabel.Name = "HashesPanel_FileNameValueLabel";
-            HashesPanel_FileNameValueLabel.Size = new Size(100, 19);
+            HashesPanel_FileNameValueLabel.Size = new Size(89, 19);
             HashesPanel_FileNameValueLabel.TabIndex = 19;
             HashesPanel_FileNameValueLabel.Tag = "";
             HashesPanel_FileNameValueLabel.Text = "<File Name>";
@@ -329,7 +330,7 @@
             // MenuStrip
             // 
             MenuStrip.BackColor = Color.FromArgb(32, 32, 32);
-            MenuStrip.Items.AddRange(new ToolStripItem[] { HashesToolStripMenuItem, ValidateToolStripMenuItem, CompareToolStripMenuItem });
+            MenuStrip.Items.AddRange(new ToolStripItem[] { HashesToolStripMenuItem, ValidateToolStripMenuItem, CompareToolStripMenuItem, QuestionMarkToolStripMenuItem });
             MenuStrip.Location = new Point(0, 0);
             MenuStrip.Name = "MenuStrip";
             MenuStrip.Size = new Size(297, 27);
@@ -363,6 +364,17 @@
             CompareToolStripMenuItem.Text = "Compare";
             CompareToolStripMenuItem.Click += CompareToolStripMenuItem_Click;
             // 
+            // QuestionMarkToolStripMenuItem
+            // 
+            QuestionMarkToolStripMenuItem.Alignment = ToolStripItemAlignment.Right;
+            QuestionMarkToolStripMenuItem.Font = new Font("Segoe UI Emoji", 9F);
+            QuestionMarkToolStripMenuItem.ForeColor = SystemColors.ButtonFace;
+            QuestionMarkToolStripMenuItem.Name = "QuestionMarkToolStripMenuItem";
+            QuestionMarkToolStripMenuItem.Padding = new Padding(4, 0, 20, 0);
+            QuestionMarkToolStripMenuItem.Size = new Size(46, 23);
+            QuestionMarkToolStripMenuItem.Text = "❔";
+            QuestionMarkToolStripMenuItem.Click += QuestionMarkToolStripMenuItem_Click;
+            // 
             // HashesPanel
             // 
             HashesPanel.Controls.Add(HashesPanel_BrowseLabel);
@@ -394,7 +406,7 @@
             HashesPanel_TrashLabel.AutoSize = true;
             HashesPanel_TrashLabel.Font = new Font("Segoe UI Emoji", 10F);
             HashesPanel_TrashLabel.ForeColor = SystemColors.ButtonFace;
-            HashesPanel_TrashLabel.Location = new Point(245, 6);
+            HashesPanel_TrashLabel.Location = new Point(246, 6);
             HashesPanel_TrashLabel.Name = "HashesPanel_TrashLabel";
             HashesPanel_TrashLabel.Size = new Size(28, 19);
             HashesPanel_TrashLabel.TabIndex = 26;
@@ -461,11 +473,11 @@
             // ValidatePanel_FileNameValueLabel
             // 
             ValidatePanel_FileNameValueLabel.AutoSize = true;
-            ValidatePanel_FileNameValueLabel.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold);
+            ValidatePanel_FileNameValueLabel.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Italic);
             ValidatePanel_FileNameValueLabel.ForeColor = SystemColors.ButtonFace;
             ValidatePanel_FileNameValueLabel.Location = new Point(3, 6);
             ValidatePanel_FileNameValueLabel.Name = "ValidatePanel_FileNameValueLabel";
-            ValidatePanel_FileNameValueLabel.Size = new Size(100, 19);
+            ValidatePanel_FileNameValueLabel.Size = new Size(89, 19);
             ValidatePanel_FileNameValueLabel.TabIndex = 24;
             ValidatePanel_FileNameValueLabel.Tag = "";
             ValidatePanel_FileNameValueLabel.Text = "<File Name>";
@@ -563,7 +575,7 @@
             ComparePanel_ResultLabel.AutoSize = true;
             ComparePanel_ResultLabel.Font = new Font("Segoe UI Emoji", 10F);
             ComparePanel_ResultLabel.ForeColor = Color.Green;
-            ComparePanel_ResultLabel.Location = new Point(60, 172);
+            ComparePanel_ResultLabel.Location = new Point(60, 197);
             ComparePanel_ResultLabel.Name = "ComparePanel_ResultLabel";
             ComparePanel_ResultLabel.Size = new Size(63, 19);
             ComparePanel_ResultLabel.TabIndex = 22;
@@ -577,7 +589,7 @@
             ComparePanel_BrowseLabel2.Cursor = Cursors.Hand;
             ComparePanel_BrowseLabel2.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline);
             ComparePanel_BrowseLabel2.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_BrowseLabel2.Location = new Point(3, 93);
+            ComparePanel_BrowseLabel2.Location = new Point(3, 131);
             ComparePanel_BrowseLabel2.Name = "ComparePanel_BrowseLabel2";
             ComparePanel_BrowseLabel2.Size = new Size(62, 19);
             ComparePanel_BrowseLabel2.TabIndex = 30;
@@ -589,7 +601,7 @@
             ComparePanel_TrashLabel2.AutoSize = true;
             ComparePanel_TrashLabel2.Font = new Font("Segoe UI Emoji", 10F);
             ComparePanel_TrashLabel2.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_TrashLabel2.Location = new Point(245, 68);
+            ComparePanel_TrashLabel2.Location = new Point(245, 106);
             ComparePanel_TrashLabel2.Name = "ComparePanel_TrashLabel2";
             ComparePanel_TrashLabel2.Size = new Size(28, 19);
             ComparePanel_TrashLabel2.TabIndex = 29;
@@ -603,15 +615,14 @@
             // ComparePanel_FileNameValueLabel2
             // 
             ComparePanel_FileNameValueLabel2.AutoSize = true;
-            ComparePanel_FileNameValueLabel2.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold);
+            ComparePanel_FileNameValueLabel2.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Italic);
             ComparePanel_FileNameValueLabel2.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_FileNameValueLabel2.Location = new Point(3, 68);
+            ComparePanel_FileNameValueLabel2.Location = new Point(3, 106);
             ComparePanel_FileNameValueLabel2.Name = "ComparePanel_FileNameValueLabel2";
-            ComparePanel_FileNameValueLabel2.Size = new Size(100, 19);
+            ComparePanel_FileNameValueLabel2.Size = new Size(85, 19);
             ComparePanel_FileNameValueLabel2.TabIndex = 28;
             ComparePanel_FileNameValueLabel2.Tag = "";
-            ComparePanel_FileNameValueLabel2.Text = "<File Name>";
-            ComparePanel_FileNameValueLabel2.Visible = false;
+            ComparePanel_FileNameValueLabel2.Text = "Choose file...";
             // 
             // ComparePanel_BrowseLabel1
             // 
@@ -619,7 +630,7 @@
             ComparePanel_BrowseLabel1.Cursor = Cursors.Hand;
             ComparePanel_BrowseLabel1.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline);
             ComparePanel_BrowseLabel1.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_BrowseLabel1.Location = new Point(3, 31);
+            ComparePanel_BrowseLabel1.Location = new Point(3, 43);
             ComparePanel_BrowseLabel1.Name = "ComparePanel_BrowseLabel1";
             ComparePanel_BrowseLabel1.Size = new Size(62, 19);
             ComparePanel_BrowseLabel1.TabIndex = 27;
@@ -631,7 +642,7 @@
             ComparePanel_TrashLabel1.AutoSize = true;
             ComparePanel_TrashLabel1.Font = new Font("Segoe UI Emoji", 10F);
             ComparePanel_TrashLabel1.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_TrashLabel1.Location = new Point(245, 6);
+            ComparePanel_TrashLabel1.Location = new Point(245, 18);
             ComparePanel_TrashLabel1.Name = "ComparePanel_TrashLabel1";
             ComparePanel_TrashLabel1.Size = new Size(28, 19);
             ComparePanel_TrashLabel1.TabIndex = 25;
@@ -645,15 +656,14 @@
             // ComparePanel_FileNameValueLabel1
             // 
             ComparePanel_FileNameValueLabel1.AutoSize = true;
-            ComparePanel_FileNameValueLabel1.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Bold);
+            ComparePanel_FileNameValueLabel1.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Italic);
             ComparePanel_FileNameValueLabel1.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_FileNameValueLabel1.Location = new Point(3, 6);
+            ComparePanel_FileNameValueLabel1.Location = new Point(3, 18);
             ComparePanel_FileNameValueLabel1.Name = "ComparePanel_FileNameValueLabel1";
-            ComparePanel_FileNameValueLabel1.Size = new Size(100, 19);
+            ComparePanel_FileNameValueLabel1.Size = new Size(85, 19);
             ComparePanel_FileNameValueLabel1.TabIndex = 24;
             ComparePanel_FileNameValueLabel1.Tag = "";
-            ComparePanel_FileNameValueLabel1.Text = "<File Name>";
-            ComparePanel_FileNameValueLabel1.Visible = false;
+            ComparePanel_FileNameValueLabel1.Text = "Choose file...";
             // 
             // DisplayForm
             // 
@@ -742,5 +752,6 @@
         private Label ComparePanel_BrowseLabel1;
         private Label ComparePanel_TrashLabel1;
         private Label ComparePanel_FileNameValueLabel1;
+        private ToolStripMenuItem QuestionMarkToolStripMenuItem;
     }
 }

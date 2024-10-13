@@ -1,5 +1,7 @@
 using FileHasherLibrary;
+using Microsoft.VisualBasic;
 using System.Collections;
+using System.Diagnostics;
 using System.IO;
 using System.Security.Cryptography;
 
@@ -16,6 +18,9 @@ namespace WinFormsUI
             InitializeComponent();
             PopulateForm();
             ShowHashesPanel();
+            HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
+            ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
         }
 
         private void PopulateForm()
@@ -132,11 +137,17 @@ namespace WinFormsUI
         private void HashesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowHashesPanel();
+            HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
+            ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowValidatePanel();
+            HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
+            CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
         }
 
         private void ShowHashesPanel()
@@ -231,7 +242,6 @@ namespace WinFormsUI
             }
 
             ComparePanel_FileNameValueLabel1.Text = TruncateText(Path.GetFileName(path), 30);
-            ComparePanel_FileNameValueLabel1.Visible = true;
             ComparePanel_TrashLabel1.Visible = true;
             ComparePanel_FileBytes1 = File.ReadAllBytes(path);
 
@@ -257,7 +267,6 @@ namespace WinFormsUI
             }
 
             ComparePanel_FileNameValueLabel2.Text = TruncateText(Path.GetFileName(path), 30);
-            ComparePanel_FileNameValueLabel2.Visible = true;
             ComparePanel_TrashLabel2.Visible = true;
             ComparePanel_FileBytes2 = File.ReadAllBytes(path);
 
@@ -291,7 +300,7 @@ namespace WinFormsUI
 
         private void ComparePanel_TrashLabel1_Click(object sender, EventArgs e)
         {
-            ComparePanel_FileNameValueLabel1.Text = "";
+            ComparePanel_FileNameValueLabel1.Text = "Choose file...";
             ComparePanel_FileBytes1 = new byte[0];
             ComparePanel_ResultLabel.Visible = false;
             ComparePanel_TrashLabel1.Visible = false;
@@ -299,7 +308,7 @@ namespace WinFormsUI
 
         private void ComparePanel_TrashLabel2_Click(object sender, EventArgs e)
         {
-            ComparePanel_FileNameValueLabel2.Text = "";
+            ComparePanel_FileNameValueLabel2.Text = "Choose file...";
             ComparePanel_FileBytes2 = new byte[0];
             ComparePanel_ResultLabel.Visible = false;
             ComparePanel_TrashLabel2.Visible = false;
@@ -308,6 +317,20 @@ namespace WinFormsUI
         private void CompareToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ShowComparePanel();
+            HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
+        }
+
+        private void QuestionMarkToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProcessStartInfo processStartInfo = new()
+            {
+                FileName = "https://github.com/EvanHei/FileHasher/blob/main/README.md",
+                UseShellExecute = true
+            };
+
+            Process.Start(processStartInfo);
         }
     }
 }
