@@ -188,7 +188,7 @@ namespace WinFormsUI
         {
             if (string.IsNullOrWhiteSpace(ValidatePanel_ExpectedHashTextBox.Text))
             {
-                ValidatePanel_ValidateResultLabel.Visible = false;
+                ValidatePanel_ResultValueLabel.Visible = false;
                 return;
             }
 
@@ -200,15 +200,15 @@ namespace WinFormsUI
 
                 if (computedHash == expectedHash)
                 {
-                    ValidatePanel_ValidateResultLabel.Visible = true;
-                    ValidatePanel_ValidateResultLabel.ForeColor = Color.DarkGreen;
-                    ValidatePanel_ValidateResultLabel.Text = "Valid Hash";
+                    ValidatePanel_ResultValueLabel.Visible = true;
+                    ValidatePanel_ResultValueLabel.ForeColor = Color.DarkGreen;
+                    ValidatePanel_ResultValueLabel.Text = "Valid";
                 }
                 else
                 {
-                    ValidatePanel_ValidateResultLabel.Visible = true;
-                    ValidatePanel_ValidateResultLabel.ForeColor = Color.Red;
-                    ValidatePanel_ValidateResultLabel.Text = "Invalid Hash";
+                    ValidatePanel_ResultValueLabel.Visible = true;
+                    ValidatePanel_ResultValueLabel.ForeColor = Color.Red;
+                    ValidatePanel_ResultValueLabel.Text = "Invalid";
                 }
             }
         }

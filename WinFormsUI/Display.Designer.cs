@@ -61,12 +61,13 @@
             ValidatePanel_TrashLabel = new Label();
             ValidatePanel_DropFilePictureBox = new PictureBox();
             ValidatePanel_FileNameValueLabel = new Label();
+            ValidatePanel_DragAndDropPictureBox = new PictureBox();
             ValidatePanel_InputHashPanel = new Panel();
-            ValidatePanel_ValidateResultLabel = new Label();
+            ValidatePanel_ResultValueLabel = new Label();
+            ValidatePanel_ResultLabel = new Label();
             ValidatePanel_ExpectedHashTextBox = new TextBox();
             ValidatePanel_AlgorithmComboBox = new ComboBox();
             ValidatePanel_ExpectedLabel = new Label();
-            ValidatePanel_DragAndDropPictureBox = new PictureBox();
             ComparePanel = new Panel();
             ComparePanel_DropFilePictureBox = new PictureBox();
             ComparePanel_DragAndDropPictureBox = new PictureBox();
@@ -85,8 +86,8 @@
             HashesPanel.SuspendLayout();
             ValidatePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ValidatePanel_DropFilePictureBox).BeginInit();
-            ValidatePanel_InputHashPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ValidatePanel_DragAndDropPictureBox).BeginInit();
+            ValidatePanel_InputHashPanel.SuspendLayout();
             ComparePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)ComparePanel_DropFilePictureBox).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ComparePanel_DragAndDropPictureBox).BeginInit();
@@ -428,8 +429,8 @@
             ValidatePanel.Controls.Add(ValidatePanel_TrashLabel);
             ValidatePanel.Controls.Add(ValidatePanel_DropFilePictureBox);
             ValidatePanel.Controls.Add(ValidatePanel_FileNameValueLabel);
-            ValidatePanel.Controls.Add(ValidatePanel_InputHashPanel);
             ValidatePanel.Controls.Add(ValidatePanel_DragAndDropPictureBox);
+            ValidatePanel.Controls.Add(ValidatePanel_InputHashPanel);
             ValidatePanel.Location = new Point(12, 30);
             ValidatePanel.Name = "ValidatePanel";
             ValidatePanel.Size = new Size(276, 376);
@@ -453,7 +454,7 @@
             ValidatePanel_TrashLabel.AutoSize = true;
             ValidatePanel_TrashLabel.Font = new Font("Segoe UI Emoji", 10F);
             ValidatePanel_TrashLabel.ForeColor = SystemColors.ButtonFace;
-            ValidatePanel_TrashLabel.Location = new Point(245, 6);
+            ValidatePanel_TrashLabel.Location = new Point(246, 6);
             ValidatePanel_TrashLabel.Name = "ValidatePanel_TrashLabel";
             ValidatePanel_TrashLabel.Size = new Size(28, 19);
             ValidatePanel_TrashLabel.TabIndex = 25;
@@ -488,68 +489,6 @@
             ValidatePanel_FileNameValueLabel.Text = "<File Name>";
             ValidatePanel_FileNameValueLabel.Visible = false;
             // 
-            // ValidatePanel_InputHashPanel
-            // 
-            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ValidateResultLabel);
-            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ExpectedHashTextBox);
-            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_AlgorithmComboBox);
-            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ExpectedLabel);
-            ValidatePanel_InputHashPanel.Location = new Point(5, 218);
-            ValidatePanel_InputHashPanel.Margin = new Padding(3, 2, 3, 2);
-            ValidatePanel_InputHashPanel.Name = "ValidatePanel_InputHashPanel";
-            ValidatePanel_InputHashPanel.Size = new Size(267, 153);
-            ValidatePanel_InputHashPanel.TabIndex = 19;
-            // 
-            // ValidatePanel_ValidateResultLabel
-            // 
-            ValidatePanel_ValidateResultLabel.AutoSize = true;
-            ValidatePanel_ValidateResultLabel.Font = new Font("Segoe UI Emoji", 10F);
-            ValidatePanel_ValidateResultLabel.ForeColor = Color.Green;
-            ValidatePanel_ValidateResultLabel.Location = new Point(98, 106);
-            ValidatePanel_ValidateResultLabel.Name = "ValidatePanel_ValidateResultLabel";
-            ValidatePanel_ValidateResultLabel.Size = new Size(63, 19);
-            ValidatePanel_ValidateResultLabel.TabIndex = 22;
-            ValidatePanel_ValidateResultLabel.Tag = "";
-            ValidatePanel_ValidateResultLabel.Text = "<result>";
-            ValidatePanel_ValidateResultLabel.Visible = false;
-            // 
-            // ValidatePanel_ExpectedHashTextBox
-            // 
-            ValidatePanel_ExpectedHashTextBox.BackColor = Color.FromArgb(32, 32, 32);
-            ValidatePanel_ExpectedHashTextBox.BorderStyle = BorderStyle.FixedSingle;
-            ValidatePanel_ExpectedHashTextBox.Font = new Font("Segoe UI Emoji", 10F);
-            ValidatePanel_ExpectedHashTextBox.ForeColor = SystemColors.ButtonFace;
-            ValidatePanel_ExpectedHashTextBox.Location = new Point(94, 60);
-            ValidatePanel_ExpectedHashTextBox.Name = "ValidatePanel_ExpectedHashTextBox";
-            ValidatePanel_ExpectedHashTextBox.Size = new Size(170, 25);
-            ValidatePanel_ExpectedHashTextBox.TabIndex = 21;
-            ValidatePanel_ExpectedHashTextBox.TextChanged += ValidatePanel_ExpectedHashTextBox_TextChanged;
-            // 
-            // ValidatePanel_AlgorithmComboBox
-            // 
-            ValidatePanel_AlgorithmComboBox.BackColor = Color.FromArgb(32, 32, 32);
-            ValidatePanel_AlgorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-            ValidatePanel_AlgorithmComboBox.Font = new Font("Segoe UI Emoji", 10F);
-            ValidatePanel_AlgorithmComboBox.ForeColor = SystemColors.ButtonFace;
-            ValidatePanel_AlgorithmComboBox.FormattingEnabled = true;
-            ValidatePanel_AlgorithmComboBox.Location = new Point(5, 60);
-            ValidatePanel_AlgorithmComboBox.Name = "ValidatePanel_AlgorithmComboBox";
-            ValidatePanel_AlgorithmComboBox.Size = new Size(80, 25);
-            ValidatePanel_AlgorithmComboBox.TabIndex = 20;
-            ValidatePanel_AlgorithmComboBox.SelectedIndexChanged += ValidatePanel_AlgorithmComboBox_SelectedIndexChanged;
-            // 
-            // ValidatePanel_ExpectedLabel
-            // 
-            ValidatePanel_ExpectedLabel.AutoSize = true;
-            ValidatePanel_ExpectedLabel.Font = new Font("Segoe UI Emoji", 10F);
-            ValidatePanel_ExpectedLabel.ForeColor = SystemColors.ButtonFace;
-            ValidatePanel_ExpectedLabel.Location = new Point(1, 34);
-            ValidatePanel_ExpectedLabel.Name = "ValidatePanel_ExpectedLabel";
-            ValidatePanel_ExpectedLabel.Size = new Size(66, 19);
-            ValidatePanel_ExpectedLabel.TabIndex = 18;
-            ValidatePanel_ExpectedLabel.Tag = "";
-            ValidatePanel_ExpectedLabel.Text = "Expected:";
-            // 
             // ValidatePanel_DragAndDropPictureBox
             // 
             ValidatePanel_DragAndDropPictureBox.Image = (Image)resources.GetObject("ValidatePanel_DragAndDropPictureBox.Image");
@@ -560,6 +499,81 @@
             ValidatePanel_DragAndDropPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             ValidatePanel_DragAndDropPictureBox.TabIndex = 18;
             ValidatePanel_DragAndDropPictureBox.TabStop = false;
+            // 
+            // ValidatePanel_InputHashPanel
+            // 
+            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ResultValueLabel);
+            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ResultLabel);
+            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ExpectedHashTextBox);
+            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_AlgorithmComboBox);
+            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ExpectedLabel);
+            ValidatePanel_InputHashPanel.Location = new Point(5, 218);
+            ValidatePanel_InputHashPanel.Margin = new Padding(3, 2, 3, 2);
+            ValidatePanel_InputHashPanel.Name = "ValidatePanel_InputHashPanel";
+            ValidatePanel_InputHashPanel.Size = new Size(267, 153);
+            ValidatePanel_InputHashPanel.TabIndex = 19;
+            // 
+            // ValidatePanel_ResultValueLabel
+            // 
+            ValidatePanel_ResultValueLabel.AutoSize = true;
+            ValidatePanel_ResultValueLabel.Font = new Font("Segoe UI Emoji", 10F);
+            ValidatePanel_ResultValueLabel.ForeColor = SystemColors.ButtonFace;
+            ValidatePanel_ResultValueLabel.Location = new Point(48, 126);
+            ValidatePanel_ResultValueLabel.Name = "ValidatePanel_ResultValueLabel";
+            ValidatePanel_ResultValueLabel.Size = new Size(104, 19);
+            ValidatePanel_ResultValueLabel.TabIndex = 33;
+            ValidatePanel_ResultValueLabel.Tag = "";
+            ValidatePanel_ResultValueLabel.Text = "<Valid/Invalid>";
+            ValidatePanel_ResultValueLabel.Visible = false;
+            // 
+            // ValidatePanel_ResultLabel
+            // 
+            ValidatePanel_ResultLabel.AutoSize = true;
+            ValidatePanel_ResultLabel.Font = new Font("Segoe UI Emoji", 10F);
+            ValidatePanel_ResultLabel.ForeColor = SystemColors.ButtonFace;
+            ValidatePanel_ResultLabel.Location = new Point(0, 126);
+            ValidatePanel_ResultLabel.Name = "ValidatePanel_ResultLabel";
+            ValidatePanel_ResultLabel.Size = new Size(49, 19);
+            ValidatePanel_ResultLabel.TabIndex = 32;
+            ValidatePanel_ResultLabel.Tag = "";
+            ValidatePanel_ResultLabel.Text = "Result:";
+            // 
+            // ValidatePanel_ExpectedHashTextBox
+            // 
+            ValidatePanel_ExpectedHashTextBox.BackColor = Color.FromArgb(32, 32, 32);
+            ValidatePanel_ExpectedHashTextBox.BorderStyle = BorderStyle.FixedSingle;
+            ValidatePanel_ExpectedHashTextBox.Font = new Font("Segoe UI Emoji", 10F);
+            ValidatePanel_ExpectedHashTextBox.ForeColor = SystemColors.ButtonFace;
+            ValidatePanel_ExpectedHashTextBox.Location = new Point(86, 60);
+            ValidatePanel_ExpectedHashTextBox.Name = "ValidatePanel_ExpectedHashTextBox";
+            ValidatePanel_ExpectedHashTextBox.Size = new Size(178, 25);
+            ValidatePanel_ExpectedHashTextBox.TabIndex = 21;
+            ValidatePanel_ExpectedHashTextBox.TextChanged += ValidatePanel_ExpectedHashTextBox_TextChanged;
+            // 
+            // ValidatePanel_AlgorithmComboBox
+            // 
+            ValidatePanel_AlgorithmComboBox.BackColor = Color.FromArgb(32, 32, 32);
+            ValidatePanel_AlgorithmComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            ValidatePanel_AlgorithmComboBox.Font = new Font("Segoe UI Emoji", 10F);
+            ValidatePanel_AlgorithmComboBox.ForeColor = SystemColors.ButtonFace;
+            ValidatePanel_AlgorithmComboBox.FormattingEnabled = true;
+            ValidatePanel_AlgorithmComboBox.Location = new Point(3, 60);
+            ValidatePanel_AlgorithmComboBox.Name = "ValidatePanel_AlgorithmComboBox";
+            ValidatePanel_AlgorithmComboBox.Size = new Size(80, 25);
+            ValidatePanel_AlgorithmComboBox.TabIndex = 20;
+            ValidatePanel_AlgorithmComboBox.SelectedIndexChanged += ValidatePanel_AlgorithmComboBox_SelectedIndexChanged;
+            // 
+            // ValidatePanel_ExpectedLabel
+            // 
+            ValidatePanel_ExpectedLabel.AutoSize = true;
+            ValidatePanel_ExpectedLabel.Font = new Font("Segoe UI Emoji", 10F);
+            ValidatePanel_ExpectedLabel.ForeColor = SystemColors.ButtonFace;
+            ValidatePanel_ExpectedLabel.Location = new Point(-1, 34);
+            ValidatePanel_ExpectedLabel.Name = "ValidatePanel_ExpectedLabel";
+            ValidatePanel_ExpectedLabel.Size = new Size(66, 19);
+            ValidatePanel_ExpectedLabel.TabIndex = 18;
+            ValidatePanel_ExpectedLabel.Tag = "";
+            ValidatePanel_ExpectedLabel.Text = "Expected:";
             // 
             // ComparePanel
             // 
@@ -618,7 +632,7 @@
             ComparePanel_ResultLabel.AutoSize = true;
             ComparePanel_ResultLabel.Font = new Font("Segoe UI Emoji", 10F);
             ComparePanel_ResultLabel.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_ResultLabel.Location = new Point(0, 344);
+            ComparePanel_ResultLabel.Location = new Point(5, 344);
             ComparePanel_ResultLabel.Name = "ComparePanel_ResultLabel";
             ComparePanel_ResultLabel.Size = new Size(49, 19);
             ComparePanel_ResultLabel.TabIndex = 22;
@@ -631,7 +645,7 @@
             ComparePanel_BrowseLabel2.Cursor = Cursors.Hand;
             ComparePanel_BrowseLabel2.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline);
             ComparePanel_BrowseLabel2.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_BrowseLabel2.Location = new Point(0, 316);
+            ComparePanel_BrowseLabel2.Location = new Point(5, 316);
             ComparePanel_BrowseLabel2.Name = "ComparePanel_BrowseLabel2";
             ComparePanel_BrowseLabel2.Size = new Size(62, 19);
             ComparePanel_BrowseLabel2.TabIndex = 30;
@@ -659,7 +673,7 @@
             ComparePanel_FileNameValueLabel2.AutoSize = true;
             ComparePanel_FileNameValueLabel2.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Italic);
             ComparePanel_FileNameValueLabel2.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_FileNameValueLabel2.Location = new Point(0, 291);
+            ComparePanel_FileNameValueLabel2.Location = new Point(5, 291);
             ComparePanel_FileNameValueLabel2.Name = "ComparePanel_FileNameValueLabel2";
             ComparePanel_FileNameValueLabel2.Size = new Size(85, 19);
             ComparePanel_FileNameValueLabel2.TabIndex = 28;
@@ -672,7 +686,7 @@
             ComparePanel_BrowseLabel1.Cursor = Cursors.Hand;
             ComparePanel_BrowseLabel1.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Underline);
             ComparePanel_BrowseLabel1.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_BrowseLabel1.Location = new Point(0, 253);
+            ComparePanel_BrowseLabel1.Location = new Point(5, 253);
             ComparePanel_BrowseLabel1.Name = "ComparePanel_BrowseLabel1";
             ComparePanel_BrowseLabel1.Size = new Size(62, 19);
             ComparePanel_BrowseLabel1.TabIndex = 27;
@@ -700,7 +714,7 @@
             ComparePanel_FileNameValueLabel1.AutoSize = true;
             ComparePanel_FileNameValueLabel1.Font = new Font("Segoe UI Emoji", 10F, FontStyle.Italic);
             ComparePanel_FileNameValueLabel1.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_FileNameValueLabel1.Location = new Point(0, 228);
+            ComparePanel_FileNameValueLabel1.Location = new Point(5, 228);
             ComparePanel_FileNameValueLabel1.Name = "ComparePanel_FileNameValueLabel1";
             ComparePanel_FileNameValueLabel1.Size = new Size(85, 19);
             ComparePanel_FileNameValueLabel1.TabIndex = 24;
@@ -715,9 +729,9 @@
             BackColor = Color.FromArgb(32, 32, 32);
             ClientSize = new Size(297, 414);
             Controls.Add(MenuStrip);
-            Controls.Add(ComparePanel);
             Controls.Add(ValidatePanel);
             Controls.Add(HashesPanel);
+            Controls.Add(ComparePanel);
             Font = new Font("Segoe UI Emoji", 12F);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = MenuStrip;
@@ -738,9 +752,9 @@
             ValidatePanel.ResumeLayout(false);
             ValidatePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ValidatePanel_DropFilePictureBox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ValidatePanel_DragAndDropPictureBox).EndInit();
             ValidatePanel_InputHashPanel.ResumeLayout(false);
             ValidatePanel_InputHashPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)ValidatePanel_DragAndDropPictureBox).EndInit();
             ComparePanel.ResumeLayout(false);
             ComparePanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)ComparePanel_DropFilePictureBox).EndInit();
@@ -781,7 +795,6 @@
         private Panel ValidatePanel_InputHashPanel;
         private Label ValidatePanel_ExpectedLabel;
         private ComboBox ValidatePanel_AlgorithmComboBox;
-        private Label ValidatePanel_ValidateResultLabel;
         private TextBox ValidatePanel_ExpectedHashTextBox;
         private Label ValidatePanel_FileNameValueLabel;
         private Label ValidatePanel_TrashLabel;
@@ -800,5 +813,7 @@
         private Label ComparePanel_ResultValueLabel;
         private PictureBox ComparePanel_DropFilePictureBox;
         private PictureBox ComparePanel_DragAndDropPictureBox;
+        private Label ValidatePanel_ResultValueLabel;
+        private Label ValidatePanel_ResultLabel;
     }
 }
