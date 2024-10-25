@@ -36,7 +36,7 @@ The Validate panel allows the validation of an expected file hashes compared aga
 
 ### Compare Panel
 
-The Compare panel allows the contents of 2 file's data to be hashed and compared using SHA512.
+The Compare panel allows data from 2 files to be hashed and compared using SHA512.
 
 <img src="./images/ComparePanel.png" width="300">
 
@@ -44,8 +44,9 @@ The Compare panel allows the contents of 2 file's data to be hashed and compared
 
 - **OS**: Windows
 - **IDE**: Visual Studio
-- **Programming Language**: C#
+- **Language**: C#
 - **Framework**: .NET
 - **UI**: Windows Forms
 - **Version Control**: Git / GitHub
 - **Algorithms**: MD5, SHA1, SHA256, SHA384, SHA512
+- **Unit Tests**: xUnit

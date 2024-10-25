@@ -124,27 +124,32 @@ namespace WinFormsUI
 
         private void HashesPanel_MD5ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(HashesPanel_MD5ValueLabel.Text);
+            string hash = BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.MD5)).Replace("-", "");
+            Clipboard.SetText(hash);
         }
 
         private void HashesPanel_SHA1ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(HashesPanel_SHA1ValueLabel.Text);
+            string hash = BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA1)).Replace("-", "");
+            Clipboard.SetText(hash);
         }
 
         private void HashesPanel_SHA256ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(HashesPanel_SHA256ValueLabel.Text);
+            string hash = BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA256)).Replace("-", "");
+            Clipboard.SetText(hash);
         }
 
         private void HashesPanel_SHA384ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(HashesPanel_SHA384ValueLabel.Text);
+            string hash = BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA384)).Replace("-", "");
+            Clipboard.SetText(hash);
         }
 
         private void HashesPanel_SHA512ClipboardLabel_Click(object sender, EventArgs e)
         {
-            Clipboard.SetText(HashesPanel_SHA512ValueLabel.Text);
+            string hash = BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA512)).Replace("-", "");
+            Clipboard.SetText(hash);
         }
 
         private void HashesToolStripMenuItem_Click(object sender, EventArgs e)
