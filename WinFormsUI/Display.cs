@@ -38,14 +38,12 @@ namespace WinFormsUI
 
             fileBytes = File.ReadAllBytes(path);
 
+            HashesPanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 22);
             HashesPanel_MD5ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.MD5)).Replace("-", ""), 15);
             HashesPanel_SHA1ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA1)).Replace("-", ""), 15);
             HashesPanel_SHA256ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA256)).Replace("-", ""), 15);
             HashesPanel_SHA384ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA384)).Replace("-", ""), 15);
             HashesPanel_SHA512ValueLabel.Text = TruncateText(BitConverter.ToString(Hasher.Hash(fileBytes, Algorithm.SHA512)).Replace("-", ""), 15);
-            HashesPanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 30);
-            ValidatePanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 30);
-
             HashesPanel_MD5ValueLabel.Visible = true;
             HashesPanel_SHA1ValueLabel.Visible = true;
             HashesPanel_SHA256ValueLabel.Visible = true;
@@ -55,6 +53,8 @@ namespace WinFormsUI
             HashesPanel_TrashLabel.Visible = true;
             ValidatePanel_FileNameValueLabel.Visible = true;
             ValidatePanel_TrashLabel.Visible = true;
+
+            ValidatePanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 22);
 
             ValidatePanel_ExpectedHashTextBox_TextChanged(null, null);
         }
@@ -81,9 +81,22 @@ namespace WinFormsUI
         {
             string[] paths = (string[])e.Data.GetData(DataFormats.FileDrop);
 
-            if (paths.Length != 1)
+            // loads file(s) into compare panel
+            if (paths.Length > 0)
             {
-                MessageBox.Show("Please drop one file at a time.");
+                if (ComparePanel_FileBytes1 == null)
+                {
+                    ComparePanel_SetFile1(paths[0]);
+                }
+                else if (ComparePanel_FileBytes2 == null)
+                {
+                    ComparePanel_SetFile2(paths[0]);
+                }
+            }
+            if (paths.Length > 1)
+            {
+                ComparePanel_SetFile2(paths[0]);
+                ComparePanel_SetFile2(paths[1]);
             }
 
             UpdateControls(paths[0]);
@@ -241,14 +254,7 @@ namespace WinFormsUI
                 return;
             }
 
-            ComparePanel_FileNameValueLabel1.Text = TruncateText(Path.GetFileName(path), 30);
-            ComparePanel_TrashLabel1.Visible = true;
-            ComparePanel_FileBytes1 = File.ReadAllBytes(path);
-
-            if (ComparePanel_FileBytes2 != null)
-            {
-                UpdateComparePanelControls();
-            }
+            ComparePanel_SetFile1(path);
         }
 
         private void ComparePanel_BrowseLabel2_Click(object sender, EventArgs e)
@@ -266,7 +272,24 @@ namespace WinFormsUI
                 return;
             }
 
-            ComparePanel_FileNameValueLabel2.Text = TruncateText(Path.GetFileName(path), 30);
+            ComparePanel_SetFile2(path);
+        }
+
+        private void ComparePanel_SetFile1(string path)
+        {
+            ComparePanel_FileNameValueLabel1.Text = TruncateText(Path.GetFileName(path), 22);
+            ComparePanel_TrashLabel1.Visible = true;
+            ComparePanel_FileBytes1 = File.ReadAllBytes(path);
+
+            if (ComparePanel_FileBytes2 != null)
+            {
+                UpdateComparePanelControls();
+            }
+        }
+
+        private void ComparePanel_SetFile2(string path)
+        {
+            ComparePanel_FileNameValueLabel2.Text = TruncateText(Path.GetFileName(path), 22);
             ComparePanel_TrashLabel2.Visible = true;
             ComparePanel_FileBytes2 = File.ReadAllBytes(path);
 
@@ -286,15 +309,15 @@ namespace WinFormsUI
 
             if (hash_1 == hash_2)
             {
-                ComparePanel_ResultLabel.Visible = true;
-                ComparePanel_ResultLabel.ForeColor = Color.DarkGreen;
-                ComparePanel_ResultLabel.Text = "The files are identical";
+                ComparePanel_ResultValueLabel.Visible = true;
+                ComparePanel_ResultValueLabel.ForeColor = Color.DarkGreen;
+                ComparePanel_ResultValueLabel.Text = "Identical";
             }
             else
             {
-                ComparePanel_ResultLabel.Visible = true;
-                ComparePanel_ResultLabel.ForeColor = Color.Red;
-                ComparePanel_ResultLabel.Text = "The files are different";
+                ComparePanel_ResultValueLabel.Visible = true;
+                ComparePanel_ResultValueLabel.ForeColor = Color.Red;
+                ComparePanel_ResultValueLabel.Text = "Different";
             }
         }
 
@@ -302,7 +325,7 @@ namespace WinFormsUI
         {
             ComparePanel_FileNameValueLabel1.Text = "Choose file...";
             ComparePanel_FileBytes1 = null;
-            ComparePanel_ResultLabel.Visible = false;
+            ComparePanel_ResultValueLabel.Visible = false;
             ComparePanel_TrashLabel1.Visible = false;
         }
 
@@ -310,7 +333,7 @@ namespace WinFormsUI
         {
             ComparePanel_FileNameValueLabel2.Text = "Choose file...";
             ComparePanel_FileBytes2 = null;
-            ComparePanel_ResultLabel.Visible = false;
+            ComparePanel_ResultValueLabel.Visible = false;
             ComparePanel_TrashLabel2.Visible = false;
         }
 
