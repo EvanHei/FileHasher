@@ -17,10 +17,7 @@ namespace WinFormsUI
         {
             InitializeComponent();
             PopulateForm();
-            ShowHashesPanel();
-            HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
-            ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
-            CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            HashesToolStripMenuItem_Click(null, null);
         }
 
         private void PopulateForm()
