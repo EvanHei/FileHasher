@@ -54,6 +54,8 @@ namespace WinFormsUI
             ValidatePanel_FileNameValueLabel.Text = TruncateText(Path.GetFileName(path), 22);
 
             ValidatePanel_ExpectedHashTextBox_TextChanged(null, null);
+
+            UpdateComparePanelControls();
         }
 
         private void ResetControls()
@@ -156,6 +158,7 @@ namespace WinFormsUI
             HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
             ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
             CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            ResultLabel.Visible = false;
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -164,6 +167,7 @@ namespace WinFormsUI
             HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
             ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
             CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
+            ResultLabel.Visible = false;
         }
 
         private void ShowHashesPanel()
@@ -304,8 +308,14 @@ namespace WinFormsUI
 
         private void UpdateComparePanelControls()
         {
-            if (ComparePanel_FileBytes1 == null || ComparePanel_FileBytes2 == null)
+            if (ComparePanel.Visible == false)
                 return;
+
+            if (ComparePanel_FileBytes1 == null || ComparePanel_FileBytes2 == null)
+            {
+                ResultLabel.Text = "";
+                return;
+            }
 
             string hash_1 = BitConverter.ToString(Hasher.Hash(ComparePanel_FileBytes1, Algorithm.SHA512));
             string hash_2 = BitConverter.ToString(Hasher.Hash(ComparePanel_FileBytes2, Algorithm.SHA512));
@@ -330,6 +340,7 @@ namespace WinFormsUI
             ComparePanel_FileBytes1 = null;
             ResultLabel.Visible = false;
             ComparePanel_TrashLabel1.Visible = false;
+            ResultLabel.Text = "";
         }
 
         private void ComparePanel_TrashLabel2_Click(object sender, EventArgs e)
@@ -338,6 +349,7 @@ namespace WinFormsUI
             ComparePanel_FileBytes2 = null;
             ResultLabel.Visible = false;
             ComparePanel_TrashLabel2.Visible = false;
+            ResultLabel.Text = "";
         }
 
         private void CompareToolStripMenuItem_Click(object sender, EventArgs e)
@@ -346,6 +358,8 @@ namespace WinFormsUI
             HashesToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
             ValidateToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Regular);
             CompareToolStripMenuItem.Font = new(CompareToolStripMenuItem.Font, FontStyle.Bold);
+            ResultLabel.Visible = true;
+            UpdateComparePanelControls();
         }
 
         private void QuestionMarkToolStripMenuItem_Click(object sender, EventArgs e)
