@@ -63,22 +63,19 @@
             ValidatePanel_FileNameValueLabel = new Label();
             ValidatePanel_DragAndDropPictureBox = new PictureBox();
             ValidatePanel_InputHashPanel = new Panel();
-            ValidatePanel_ResultValueLabel = new Label();
-            ValidatePanel_ResultLabel = new Label();
             ValidatePanel_ExpectedHashTextBox = new TextBox();
             ValidatePanel_AlgorithmComboBox = new ComboBox();
             ValidatePanel_ExpectedLabel = new Label();
             ComparePanel = new Panel();
             ComparePanel_DropFilePictureBox = new PictureBox();
             ComparePanel_DragAndDropPictureBox = new PictureBox();
-            ComparePanel_ResultValueLabel = new Label();
-            ComparePanel_ResultLabel = new Label();
             ComparePanel_BrowseLabel2 = new Label();
             ComparePanel_TrashLabel2 = new Label();
             ComparePanel_FileNameValueLabel2 = new Label();
             ComparePanel_BrowseLabel1 = new Label();
             ComparePanel_TrashLabel1 = new Label();
             ComparePanel_FileNameValueLabel1 = new Label();
+            ResultLabel = new Label();
             ((System.ComponentModel.ISupportInitialize)HashesPanel_DragAndDropPictureBox).BeginInit();
             HashesPanel_AlgorithmsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)HashesPanel_DropFilePictureBox).BeginInit();
@@ -502,8 +499,6 @@
             // 
             // ValidatePanel_InputHashPanel
             // 
-            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ResultValueLabel);
-            ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ResultLabel);
             ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ExpectedHashTextBox);
             ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_AlgorithmComboBox);
             ValidatePanel_InputHashPanel.Controls.Add(ValidatePanel_ExpectedLabel);
@@ -512,31 +507,6 @@
             ValidatePanel_InputHashPanel.Name = "ValidatePanel_InputHashPanel";
             ValidatePanel_InputHashPanel.Size = new Size(267, 153);
             ValidatePanel_InputHashPanel.TabIndex = 19;
-            // 
-            // ValidatePanel_ResultValueLabel
-            // 
-            ValidatePanel_ResultValueLabel.AutoSize = true;
-            ValidatePanel_ResultValueLabel.Font = new Font("Segoe UI Emoji", 10F);
-            ValidatePanel_ResultValueLabel.ForeColor = SystemColors.ButtonFace;
-            ValidatePanel_ResultValueLabel.Location = new Point(48, 126);
-            ValidatePanel_ResultValueLabel.Name = "ValidatePanel_ResultValueLabel";
-            ValidatePanel_ResultValueLabel.Size = new Size(104, 19);
-            ValidatePanel_ResultValueLabel.TabIndex = 33;
-            ValidatePanel_ResultValueLabel.Tag = "";
-            ValidatePanel_ResultValueLabel.Text = "<Valid/Invalid>";
-            ValidatePanel_ResultValueLabel.Visible = false;
-            // 
-            // ValidatePanel_ResultLabel
-            // 
-            ValidatePanel_ResultLabel.AutoSize = true;
-            ValidatePanel_ResultLabel.Font = new Font("Segoe UI Emoji", 10F);
-            ValidatePanel_ResultLabel.ForeColor = SystemColors.ButtonFace;
-            ValidatePanel_ResultLabel.Location = new Point(0, 126);
-            ValidatePanel_ResultLabel.Name = "ValidatePanel_ResultLabel";
-            ValidatePanel_ResultLabel.Size = new Size(49, 19);
-            ValidatePanel_ResultLabel.TabIndex = 32;
-            ValidatePanel_ResultLabel.Tag = "";
-            ValidatePanel_ResultLabel.Text = "Result:";
             // 
             // ValidatePanel_ExpectedHashTextBox
             // 
@@ -579,8 +549,6 @@
             // 
             ComparePanel.Controls.Add(ComparePanel_DropFilePictureBox);
             ComparePanel.Controls.Add(ComparePanel_DragAndDropPictureBox);
-            ComparePanel.Controls.Add(ComparePanel_ResultValueLabel);
-            ComparePanel.Controls.Add(ComparePanel_ResultLabel);
             ComparePanel.Controls.Add(ComparePanel_BrowseLabel2);
             ComparePanel.Controls.Add(ComparePanel_TrashLabel2);
             ComparePanel.Controls.Add(ComparePanel_FileNameValueLabel2);
@@ -613,31 +581,6 @@
             ComparePanel_DragAndDropPictureBox.SizeMode = PictureBoxSizeMode.Zoom;
             ComparePanel_DragAndDropPictureBox.TabIndex = 32;
             ComparePanel_DragAndDropPictureBox.TabStop = false;
-            // 
-            // ComparePanel_ResultValueLabel
-            // 
-            ComparePanel_ResultValueLabel.AutoSize = true;
-            ComparePanel_ResultValueLabel.Font = new Font("Segoe UI Emoji", 10F);
-            ComparePanel_ResultValueLabel.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_ResultValueLabel.Location = new Point(53, 344);
-            ComparePanel_ResultValueLabel.Name = "ComparePanel_ResultValueLabel";
-            ComparePanel_ResultValueLabel.Size = new Size(138, 19);
-            ComparePanel_ResultValueLabel.TabIndex = 31;
-            ComparePanel_ResultValueLabel.Tag = "";
-            ComparePanel_ResultValueLabel.Text = "<Identical/Different>";
-            ComparePanel_ResultValueLabel.Visible = false;
-            // 
-            // ComparePanel_ResultLabel
-            // 
-            ComparePanel_ResultLabel.AutoSize = true;
-            ComparePanel_ResultLabel.Font = new Font("Segoe UI Emoji", 10F);
-            ComparePanel_ResultLabel.ForeColor = SystemColors.ButtonFace;
-            ComparePanel_ResultLabel.Location = new Point(5, 344);
-            ComparePanel_ResultLabel.Name = "ComparePanel_ResultLabel";
-            ComparePanel_ResultLabel.Size = new Size(49, 19);
-            ComparePanel_ResultLabel.TabIndex = 22;
-            ComparePanel_ResultLabel.Tag = "";
-            ComparePanel_ResultLabel.Text = "Result:";
             // 
             // ComparePanel_BrowseLabel2
             // 
@@ -721,13 +664,27 @@
             ComparePanel_FileNameValueLabel1.Tag = "";
             ComparePanel_FileNameValueLabel1.Text = "Choose file...";
             // 
+            // ResultLabel
+            // 
+            ResultLabel.AutoSize = true;
+            ResultLabel.Dock = DockStyle.Bottom;
+            ResultLabel.ForeColor = SystemColors.ButtonFace;
+            ResultLabel.Location = new Point(0, 397);
+            ResultLabel.Name = "ResultLabel";
+            ResultLabel.Padding = new Padding(15, 0, 0, 10);
+            ResultLabel.Size = new Size(127, 31);
+            ResultLabel.TabIndex = 29;
+            ResultLabel.Text = "<ResultLabel>";
+            ResultLabel.TextAlign = ContentAlignment.MiddleRight;
+            // 
             // DisplayForm
             // 
             AllowDrop = true;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 32, 32);
-            ClientSize = new Size(297, 414);
+            ClientSize = new Size(297, 428);
+            Controls.Add(ResultLabel);
             Controls.Add(MenuStrip);
             Controls.Add(ValidatePanel);
             Controls.Add(HashesPanel);
@@ -802,7 +759,6 @@
         private Label HashesPanel_BrowseLabel;
         private Label ValidatePanel_BrowseLabel;
         private Panel ComparePanel;
-        private Label ComparePanel_ResultLabel;
         private Label ComparePanel_BrowseLabel2;
         private Label ComparePanel_TrashLabel2;
         private Label ComparePanel_FileNameValueLabel2;
@@ -810,10 +766,8 @@
         private Label ComparePanel_TrashLabel1;
         private Label ComparePanel_FileNameValueLabel1;
         private ToolStripMenuItem QuestionMarkToolStripMenuItem;
-        private Label ComparePanel_ResultValueLabel;
         private PictureBox ComparePanel_DropFilePictureBox;
         private PictureBox ComparePanel_DragAndDropPictureBox;
-        private Label ValidatePanel_ResultValueLabel;
-        private Label ValidatePanel_ResultLabel;
+        private Label ResultLabel;
     }
 }

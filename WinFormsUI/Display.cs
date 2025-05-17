@@ -67,6 +67,7 @@ namespace WinFormsUI
             HashesPanel_TrashLabel.Visible = false;
             ValidatePanel_FileNameValueLabel.Visible = false;
             ValidatePanel_TrashLabel.Visible = false;
+            ResultLabel.Visible = false;
         }
 
         private string TruncateText(string text, int length)
@@ -190,7 +191,7 @@ namespace WinFormsUI
         {
             if (string.IsNullOrWhiteSpace(ValidatePanel_ExpectedHashTextBox.Text))
             {
-                ValidatePanel_ResultValueLabel.Visible = false;
+                ResultLabel.Visible = false;
                 return;
             }
 
@@ -202,15 +203,15 @@ namespace WinFormsUI
 
                 if (computedHash == expectedHash)
                 {
-                    ValidatePanel_ResultValueLabel.Visible = true;
-                    ValidatePanel_ResultValueLabel.ForeColor = Color.DarkGreen;
-                    ValidatePanel_ResultValueLabel.Text = "Valid";
+                    ResultLabel.Visible = true;
+                    ResultLabel.ForeColor = Color.DarkGreen;
+                    ResultLabel.Text = "Valid";
                 }
                 else
                 {
-                    ValidatePanel_ResultValueLabel.Visible = true;
-                    ValidatePanel_ResultValueLabel.ForeColor = Color.Red;
-                    ValidatePanel_ResultValueLabel.Text = "Invalid";
+                    ResultLabel.Visible = true;
+                    ResultLabel.ForeColor = Color.Red;
+                    ResultLabel.Text = "Invalid";
                 }
             }
         }
@@ -311,15 +312,15 @@ namespace WinFormsUI
 
             if (hash_1 == hash_2)
             {
-                ComparePanel_ResultValueLabel.Visible = true;
-                ComparePanel_ResultValueLabel.ForeColor = Color.DarkGreen;
-                ComparePanel_ResultValueLabel.Text = "Identical";
+                ResultLabel.Visible = true;
+                ResultLabel.ForeColor = Color.DarkGreen;
+                ResultLabel.Text = "Identical";
             }
             else
             {
-                ComparePanel_ResultValueLabel.Visible = true;
-                ComparePanel_ResultValueLabel.ForeColor = Color.Red;
-                ComparePanel_ResultValueLabel.Text = "Different";
+                ResultLabel.Visible = true;
+                ResultLabel.ForeColor = Color.Red;
+                ResultLabel.Text = "Different";
             }
         }
 
@@ -327,7 +328,7 @@ namespace WinFormsUI
         {
             ComparePanel_FileNameValueLabel1.Text = "Choose file...";
             ComparePanel_FileBytes1 = null;
-            ComparePanel_ResultValueLabel.Visible = false;
+            ResultLabel.Visible = false;
             ComparePanel_TrashLabel1.Visible = false;
         }
 
@@ -335,7 +336,7 @@ namespace WinFormsUI
         {
             ComparePanel_FileNameValueLabel2.Text = "Choose file...";
             ComparePanel_FileBytes2 = null;
-            ComparePanel_ResultValueLabel.Visible = false;
+            ResultLabel.Visible = false;
             ComparePanel_TrashLabel2.Visible = false;
         }
 
